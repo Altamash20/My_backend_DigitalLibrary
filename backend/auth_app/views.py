@@ -4,22 +4,11 @@ from django.contrib.auth import login, logout
 
 # Create your views here.
 
-def register_view(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return 'success'
-        else:
-            form = UserCreationForm()
-        return render(request, 'auth/register.html', {'form':form})
+def register_page(request):
+    return render(request, 'register.html')
 
-def login_view(request):
-    pass
 
-def dashboard_view(request):
-    pass
+def login_page(request):
+    return render(request, 'login.html')
+  
 
-def logout_view(request):
-    pass
