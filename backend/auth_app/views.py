@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User 
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .models import *
 
 
@@ -8,6 +10,7 @@ from .models import *
 # Create your views here.
 
 
+@login_required(login_url='/auth/login/')
 def books_page(request):
     
     if request.method == "POST":
@@ -35,11 +38,39 @@ def books_page(request):
         messages.info(request, 'Book info submitted successfully!')
 
         
-        return redirect('/books_management/')
+        return redirect('/auth/books_management/')
     
     return render(request, 'books.html')
 
 
+
+
+def login_page(request):
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if not User.objects.filter(username = username).exists():
+            messages.error(request, 'Invalid Username/Email')
+            return redirect('/auth/login/')
+        
+        user = authenticate(username = username, password = password)
+
+        if user is None:
+            messages.error(request, 'Invalid Password')
+            return redirect('/auth/login/')
+        else:
+            login(request, user)
+            return redirect('/auth/books_management/')
+
+
+    return render(request, 'login.html')
+  
+
+# def logout_page(request):
+#     logout(request)
+#     return('/auth/login/')
 
 
 def register_page(request):
@@ -70,14 +101,12 @@ def register_page(request):
 
         messages.info(request, 'Account created successfully!')
 
-        return redirect('/register')
+        return redirect('/auth/register/')
     
     return render(request, 'register.html')
 
 
 
 
-def login_page(request):
-    return render(request, 'login.html')
-  
+
 

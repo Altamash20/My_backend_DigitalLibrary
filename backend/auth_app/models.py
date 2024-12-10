@@ -14,7 +14,8 @@ class Book(models.Model):
         HORROR = 'HR', 'Horror'
         FICTION = 'FN', 'Fiction'
         SCIENCE = 'SCN', 'Science'
-        OTHER = 'OTH', 'Other' 
+        OTHER = 'OTH', 'Other'
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True) 
     Title = models.CharField(max_length=100)
     Author = models.CharField(max_length=100)
     ISBN = models.IntegerField()
