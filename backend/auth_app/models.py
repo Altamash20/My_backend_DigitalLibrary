@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from .models import *
 
 
 # Books
 # User
 # Reviews
 
-class Books(models.Model):
+class Book(models.Model):
     class TypeChoices(models.TextChoices):
         LITERARY = 'LR', 'Literary'
         HISTORY = 'HS', 'History'
@@ -21,15 +22,14 @@ class Books(models.Model):
     Cover_Image_URL = models.URLField(default='')
 
     def __str__(self):
-        return self.title 
+        return self.Title 
     
 
 class Review(models.Model):
     Username = models.ForeignKey(User, on_delete=models.CASCADE)
-    Title = models.ForeignKey(Books, on_delete=models.CASCADE)
+    Title = models.ForeignKey(Book, on_delete=models.CASCADE)
     Rating = models.PositiveSmallIntegerField()
     Comment = models.CharField(max_length=200)
 
-def __str__(self):
-    return f"Rating: {self.rating}"
-    
+    def __str__(self):
+        return f"Rating: {self.rating}"
