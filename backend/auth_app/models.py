@@ -23,7 +23,12 @@ class Book(models.Model):
     Cover_Image_URL = models.URLField(default='')
 
     def __str__(self):
-        return self.Title 
+        return self.Title
+    
+    @property
+    def was_a_Horror(self) -> bool:
+        set_Genre = Book.Genre 
+        return self.Genre == Book.TypeChoices.HORROR
     
 
 class Review(models.Model):

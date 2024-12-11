@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User 
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .models import *
 
@@ -39,6 +39,9 @@ def books_page(request):
 
         
         return redirect('/auth/books_management/')
+    
+    queryset = Book.objects.all()
+    context = {'books': queryset}
     
     return render(request, 'books.html')
 
@@ -102,6 +105,7 @@ def register_page(request):
         messages.info(request, 'Account created successfully!')
 
         return redirect('/auth/register/')
+    
     
     return render(request, 'register.html')
 
