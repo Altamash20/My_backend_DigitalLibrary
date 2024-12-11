@@ -30,7 +30,31 @@ to get password of user(encrypted with Hashing algorithm)-
 <br>
 User.objects.all()[index of required user].password
 <br>
+you can get other information like First name, Email, Username etc for required user by replacing 'password' in above command 
+<br>
 <br>
 <br>
 to retrieve all books-
-<br> 
+<br>
+Book.objects.all()
+<br>
+To get detail about different attribute of required books, you can use same command as in case of users
+<br>
+To see how to write tests for APIs here please see tests.py file and viga_script.py file in script directory
+<br>
+Command to check whether tests running successfully-
+<br>
+python manage.py test
+<br>
+Command to run scripts -
+<br>
+python manage.py runscript <script file name>
+<br>
+Note: Do not use .py extension with file in above runscript command
+<br>
+<br>
+<br>
+Note: Always check whether the backend server is running before using Endpoints URL
+<br>
+Command to run backend server: python manage.py runserver
+
