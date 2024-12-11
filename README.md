@@ -1,4 +1,4 @@
-Instructions to Setup and use APIs: (Author-Mohammad Altamash)
+Instructions to Setup and use APIs: (Author- Mohammad Altamash)
 <br>
 1) Backend server is running at localhost:8000/
 <br>
