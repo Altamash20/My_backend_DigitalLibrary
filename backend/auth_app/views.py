@@ -40,8 +40,6 @@ def books_page(request):
         
         return redirect('/auth/books_management/')
     
-    queryset = Book.objects.all()
-    context = {'books': queryset}
     
     return render(request, 'books.html')
 
