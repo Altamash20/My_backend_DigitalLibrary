@@ -7,5 +7,5 @@ class BookTests(TestCase):
         book = Book(Title='test')
         self.assertEqual(book.Title, 'test')
 
-        book.Title = 'bgthu'
-        self.assertEqual(book.Title, 'bgthu')
+        book.Title = 'ABC'
+        self.assertEqual(book.Title, 'ABC')
